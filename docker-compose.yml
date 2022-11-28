@@ -1,0 +1,13 @@
+version: '3'
+services:
+   web:
+       build: .
+       command: gunicorn rekruto_test_task.wsgi --bind 0.0.0.0:8000
+       ports:
+           - "8000:8000"
+   nginx:
+     build: ./nginx
+     ports:
+       - "80:80"
+     depends_on:
+       - web
